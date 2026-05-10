@@ -1,0 +1,37 @@
+{
+  "name": "@a11y-guard/eslint-plugin",
+  "version": "1.0.0",
+  "description": "ESLint plugin for a11y-guard — static JSX/TSX accessibility analysis",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@a11y-guard/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  },
+  "devDependencies": {
+    "@types/eslint": "^9.0.0",
+    "tsup": "^8.0.0",
+    "vitest": "^2.0.0",
+    "typescript": "^5.5.0",
+    "eslint": "^9.0.0"
+  }
+}
