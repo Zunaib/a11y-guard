@@ -3,8 +3,9 @@
 > **Region-aware accessibility compliance linter for frontend developers.**
 > Know exactly which law you're breaking, in which country, and how to fix it.
 
-[![npm version](https://img.shields.io/npm/v/a11y-guard)](https://www.npmjs.com/package/a11y-guard)
-[![license](https://img.shields.io/npm/l/a11y-guard)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/%40a11y-guard%2Fcli?label=npm)](https://www.npmjs.com/package/@a11y-guard/cli)
+[![license](https://img.shields.io/npm/l/%40a11y-guard%2Fcli)](LICENSE)
+[![tests](https://img.shields.io/badge/tests-130%20passing-brightgreen)](https://github.com/Zunaib/a11y-guard/tree/main/packages/core/src/__tests__)
 [![WCAG 2.1 AA](https://img.shields.io/badge/WCAG-2.1%20AA-blue)](https://www.w3.org/WAI/WCAG21/Understanding/)
 
 ---
@@ -31,9 +32,9 @@
 ## Installation
 
 ```bash
-npm install --save-dev a11y-guard @a11y-guard/cli
+npm install --save-dev @a11y-guard/cli
 # or
-pnpm add --save-dev a11y-guard @a11y-guard/cli
+pnpm add -D @a11y-guard/cli
 ```
 
 ---
@@ -42,16 +43,16 @@ pnpm add --save-dev a11y-guard @a11y-guard/cli
 
 ```bash
 # Initialize config + inject scripts into package.json
-npx a11y-guard init
+npx @a11y-guard/cli init
 
 # Scan for US and EU compliance
-npx a11y-guard scan --region US EU
+npx @a11y-guard/cli scan --region US EU
 
 # Generate an HTML report
-npx a11y-guard scan --region US EU --reporter html --output a11y-report.html
+npx @a11y-guard/cli scan --region US EU --reporter html --output a11y-report.html
 
 # CI mode — exits with code 1 on errors
-npx a11y-guard scan --region US EU --reporter github-actions --fail-on error
+npx @a11y-guard/cli scan --region US EU --reporter github-actions --fail-on error
 ```
 
 ---
@@ -60,7 +61,7 @@ npx a11y-guard scan --region US EU --reporter github-actions --fail-on error
 
 ```typescript
 // a11y-guard.config.ts
-import { defineConfig } from 'a11y-guard';
+import { defineConfig } from '@a11y-guard/core';
 
 export default defineConfig({
   // Target by region, law, or disability type — mix and match
@@ -201,10 +202,10 @@ export default defineConfig({
 `keyboard-accessible` · `keyboard-trap` · `focus-order` · `label-in-name` · `pointer-gestures` · `skip-links`
 
 ### Cognitive
-`page-title` · `link-purpose` · `error-identification` · `error-suggestion` · `label-association` · `language-attr` · `language-parts` · `consistent-navigation` · `on-input` · `timeout-adjustable`
+`page-title` · `link-purpose` · `error-identification` · `error-suggestion` · `label-association` · `language-parts` · `consistent-navigation` · `on-input` · `timeout-adjustable`
 
 ### Seizure / Vestibular
-`no-flashing` · `animation-from-interactions`
+`animation-from-interactions`
 
 ### Structural / Semantic
 `heading-order` · `landmark-regions` · `aria-required-attr` · `aria-valid-attr` · `aria-valid-attr-value` · `duplicate-id` · `html-has-lang` · `list-structure` · `table-headers`
@@ -215,14 +216,14 @@ export default defineConfig({
 
 ```yaml
 - name: Accessibility audit
-  run: npx a11y-guard scan --region US EU --reporter github-actions --fail-on error
+  run: npx @a11y-guard/cli scan --region US EU --reporter github-actions --fail-on error
 ```
 
 Or generate a SARIF file for GitHub Advanced Security:
 
 ```yaml
 - name: Accessibility audit (SARIF)
-  run: npx a11y-guard scan --reporter sarif --output results.sarif
+  run: npx @a11y-guard/cli scan --reporter sarif --output results.sarif
 
 - name: Upload SARIF
   uses: github/codeql-action/upload-sarif@v3
@@ -234,4 +235,4 @@ Or generate a SARIF file for GitHub Advanced Security:
 
 ## License
 
-MIT © a11y-guard contributors
+MIT © [Zunaib Imtiaz](https://github.com/Zunaib)
